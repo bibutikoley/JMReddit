@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "dev.bibuti.redditclient"
+        minSdkVersion 22
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        debugConfig {
+            //Paste file inside app module..
+            storeFile file("bibuti_debug.jks")
+            storePassword("bibuti_debug")
+            keyAlias "bibuti_debug"
+            keyPassword "bibuti_debug"
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debugConfig
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
+
+    //New Theme..
+    implementation 'com.google.android.material:material:1.0.0'
+
+    //RxJava and RxAndroid..
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+
+    //Retrofit Client..
+    //implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    //Interceptor..
+    implementation("com.github.ihsanbal:LoggingInterceptor:3.0.0") {
+        exclude group: 'org.json', module: 'json'
+    }
+
+    //Navigation Architecture..
+    def nav_version = "2.1.0-alpha02"
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    //LiveData + ViewModel..
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    //ImageLoading..
+    implementation("com.github.bumptech.glide:glide:4.9.0") {
+        exclude group: "com.android.support"
+    }
+    annotationProcessor("com.github.bumptech.glide:compiler:4.9.0") {
+        exclude group: "com.android.support"
+    }
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //Butterknife - ViewInjection
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    //Shimmer...
+    implementation 'com.facebook.shimmer:shimmer:0.4.0'
+}

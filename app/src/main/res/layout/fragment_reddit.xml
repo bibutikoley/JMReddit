@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RedditFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/redditMediaFL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/redditIV"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:scaleType="fitXY"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <WebView
+                android:id="@+id/redditWV"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                tools:visibility="gone" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/redditTitleTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/redditMediaFL"
+            android:layout_margin="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:lineSpacingExtra="-8dp"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/redditMediaFL"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/redditPostedByTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/redditTitleTV"
+            app:layout_constraintTop_toBottomOf="@+id/redditTitleTV"
+            tools:text="PostedBy" />
+
+        <TextView
+            android:id="@+id/redditShareTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/redditTitleTV"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_share"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="Share"
+            app:layout_constraintStart_toStartOf="@+id/redditPostedByTV"
+            app:layout_constraintTop_toBottomOf="@+id/redditPostedByTV"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/redditVotesTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:drawableStart="@drawable/ic_votes"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/redditShareTV"
+            app:layout_constraintStart_toEndOf="@+id/redditShareTV"
+            app:layout_constraintTop_toTopOf="@+id/redditShareTV"
+            tools:text="Votes" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/colorAccent"
+            android:checkable="false"
+            android:ellipsize="end"
+            android:textColor="@android:color/white"
+            app:chipIconVisible="false"
+            app:layout_constraintBottom_toBottomOf="@+id/redditVotesTV"
+            app:layout_constraintEnd_toEndOf="@+id/redditTitleTV"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/redditVotesTV"
+            app:layout_constraintTop_toTopOf="@+id/redditVotesTV"
+            tools:text="Reddit Type" />
+
+        <TextView
+            android:id="@+id/redditCommentsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_comment"
+            android:drawablePadding="8dp"
+            app:layout_constraintStart_toStartOf="@+id/redditShareTV"
+            app:layout_constraintTop_toBottomOf="@+id/redditShareTV"
+            tools:text="Comments" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/redditCommentsRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/redditCommentsTV"
+            tools:listitem="@layout/single_comment_layout" />
+
+        <ProgressBar
+            android:id="@+id/redditCommentsLoaderPB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:indeterminate="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/redditCommentsTV" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

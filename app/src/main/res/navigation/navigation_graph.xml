@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/frontPageFragment">
+
+    <fragment
+        android:id="@+id/frontPageFragment"
+        android:name="dev.bibuti.redditclient.FrontPageFragment"
+        android:label="fragment_front_page"
+        tools:layout="@layout/fragment_front_page">
+        <action
+            android:id="@+id/action_frontPageFragment_to_searchPageFragment"
+            app:destination="@id/searchPageFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_frontPageFragment_to_redditFragment"
+            app:destination="@id/redditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchPageFragment"
+        android:name="dev.bibuti.redditclient.SearchPageFragment"
+        android:label="fragment_search_page"
+        tools:layout="@layout/fragment_search_page">
+        <action
+            android:id="@+id/action_searchPageFragment_to_redditFragment"
+            app:destination="@id/redditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/redditFragment"
+        android:name="dev.bibuti.redditclient.RedditFragment"
+        android:label="fragment_reddit"
+        tools:layout="@layout/fragment_reddit">
+        <action
+            android:id="@+id/action_redditFragment_to_searchPageFragment"
+            app:destination="@id/searchPageFragment" />
+    </fragment>
+</navigation>
